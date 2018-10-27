@@ -71,6 +71,7 @@ function frame() {
 			o.classList.add('hidden');
 		});
 
+	console.log(obstacles.length)
 	for (let i = obstacles.length - 1; i >= 0; --i) {
 		const ob = obstacles[i],
 			t = now - ob.startTime;

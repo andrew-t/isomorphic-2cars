@@ -63,6 +63,17 @@ function frame() {
 		}
 	}
 
+	[ ...document.getQuerySelector('#obstacles div') ]
+		.forEach(o => o.classList.add('hidden'));
+
+	for (let i = obstacles.length - 1; i >= 0; --i) {
+		const ob = obstacles[i],
+			t = now - ob.startTime;
+		const el = document.getElementById('obstacle-' + (i + 1));
+		el.classList.remove('hidden');
+		el.style.top = t / (framesInView / slowness) * 800 + 'px';
+	}
+
 	if (!gameOver)
 		requestAnimationFrame(frame);
 }

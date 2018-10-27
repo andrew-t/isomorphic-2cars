@@ -11,8 +11,13 @@ const road = document.getElementById('road'),
 console.log('key', keyLogger);
 keyLogger.focus();
 keyLogger.addEventListener('keypress', e => {
-	console.log('key', e);
+	switch(e.key) {
+		case 'ArrowLeft': toggle('a'); break;
+		case 'ArrowRight': toggle('b'); break;
+		default: console.log(e); break;
+	}
 });
+
 
 
 

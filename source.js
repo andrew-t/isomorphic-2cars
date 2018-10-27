@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', e => {
 
-function $(a) { return document.getElementById(a); }
+function aaa(a) { return document.getElementById(a); }
 
 const road = $('road');
 
-console.log('key', $('keylogger'));
-$('keylogger').focus();
-$('keylogger').addEventListener('keypress', e => {
+console.log('key', aaa('keylogger'));
+aaa('keylogger').focus();
+aaa('keylogger').addEventListener('keypress', e => {
 	console.log('key', e);
 });
 

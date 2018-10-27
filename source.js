@@ -34,7 +34,7 @@ function frame() {
 	
 	const bigFrame = Math.floor(time / slowness);
 	const subFrame = (time % slowness) / slowness;
-	if (lastBigFrame != bigFrame && bigFrame <= start) {
+	if (lastBigFrame != bigFrame && bigFrame >= start) {
 		lastBigFrame = bigFrame;
 		console.log('big frame', bigFrame);
 		const happening = ~~(Math.random() * 5);
@@ -75,6 +75,7 @@ function frame() {
 		const ob = obstacles[i],
 			t = now - ob.startTime;
 		const el = document.getElementById('obstacle-' + (i + 1));
+		console.log(el);
 		el.classList.remove('hidden');
 		el.style.top = (t / (framesInView / slowness) * 800) + 'px';
 	}

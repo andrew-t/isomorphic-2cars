@@ -54,3 +54,5 @@
 #obstacles div.a1 { left: 125px; }
 #obstacles div.b0 { left: 225px; }
 #obstacles div.b1 { left: 325px; }
+
+.hidden { display: none !important; }

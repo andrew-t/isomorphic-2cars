@@ -73,6 +73,7 @@
 	border-bottom-color: #800;
 	border-right-color: #a00;
 }
+#tunnel > * { position: relative; left: -400px; right: -400px; }
 
 #ship {
 	position: absolute;

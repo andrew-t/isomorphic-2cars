@@ -58,7 +58,7 @@ function frame() {
 			obstacles.splice(i, 1);
 			break;
 		}
-		if (t * slowness == framesInView) {
+		if (t * slowness > framesInView - 1 && t * slowness < framesInView) {
 			if (document.body.classList.contains(ob.car) == (ob.pos == 1)) {
 				gameOver = true;
 				console.log('gameOver');

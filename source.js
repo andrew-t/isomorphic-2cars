@@ -63,7 +63,8 @@ function frame() {
 		}
 	}
 
-	requestAnimationFrame(frame);
+	if (!gameOver)
+		requestAnimationFrame(frame);
 }
 
 addObstacle(car, pos) {

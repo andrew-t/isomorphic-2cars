@@ -18,8 +18,7 @@ keyLogger.addEventListener('keypress', e => {
 	}
 });
 
-
-
+function toggle(c) { document.body.classList.toggle(c); }
 
 });
 

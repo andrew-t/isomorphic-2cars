@@ -48,7 +48,7 @@ function frame() {
 		}
 	}
 	
-	for (let i = obstacles.length; i >= 0; --i) {
+	for (let i = obstacles.length - 1; i >= 0; --i) {
 		const ob = obstacles[i],
 			t = now - ob.startTime;
 		if (t > framesInView * slowness) {

@@ -89,7 +89,7 @@ function frame() {
 
 	function addObstacle(car, pos) {
 		console.log('rock', car, pos);
-		obstacles.push({ car, pos, startTime: 0 });
+		obstacles.push({ car, pos, startTime: now });
 	}
 }
 

@@ -5,12 +5,10 @@ document.addEventListener('DOMContentLoaded', e => {
 
 console.log('ok');
 
-const road = document.getElementById('road'),
-	keyLogger = document.getElementById('keylogger');
+const road = document.getElementById('road');
 
-console.log('key', keyLogger);
-keyLogger.focus();
-keyLogger.addEventListener('keypress', e => {
+road.focus();
+road.addEventListener('keypress', e => {
 	switch(e.key) {
 		case 'ArrowLeft': toggle('a'); break;
 		case 'ArrowRight': toggle('b'); break;

@@ -62,11 +62,16 @@
 
 
 #tunnel {
-	background: brown;
 	width: 800px;
 	height: 800px;
 	position: relative;
 	display: inline-block;
+	box-sizing: border-box;
+	border: 400px solid brown;
+	border-top-color: #400;
+	border-left-color: #600;
+	border-bottom-color: #800;
+	border-right-color: #a00;
 }
 
 #ship {

@@ -94,7 +94,7 @@ function frame() {
 		el.classList.remove('hidden');
 		el.classList.add(ob.car + ob.pos);
 		el.style.transform = 'scale(' +
-			(t / (framesInView * slowness)) + ')';
+			(t / (framesInView * slowness) * 1.2) + ')';
 	}
 
 	if (!gameOver)

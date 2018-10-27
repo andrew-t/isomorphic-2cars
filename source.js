@@ -1,4 +1,4 @@
-function $(_) { return document.getElementById(_); }
+function $(a) { return document.getElementById(a); }
 
 const road = $('road');
 

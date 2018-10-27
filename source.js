@@ -80,7 +80,7 @@ function frame() {
 		const el = document.getElementById('obstacle-' + (i + 1));
 		// console.log(el);
 		el.classList.remove('hidden');
-		el.style.top = (t / (framesInView / slowness) * 800) + 'px';
+		el.style.top = (t / (framesInView * slowness) * 800) + 'px';
 	}
 
 	if (!gameOver)

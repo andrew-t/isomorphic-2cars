@@ -64,7 +64,10 @@ function frame() {
 	}
 
 	[ ...document.getQuerySelector('#obstacles div') ]
-		.forEach(o => o.classList.add('hidden'));
+		.forEach(o => {
+			[ ...o.classList ].forEach(c => o.classList.remove('c'));
+			o.classList.add('hidden');
+		});
 
 	for (let i = obstacles.length - 1; i >= 0; --i) {
 		const ob = obstacles[i],

@@ -71,6 +71,7 @@
 	position: absolute;
 	left: 0;
 	top: 0;
+	z-index: 1;
 	content: ' ';
 	width: 800px;
 	height: 800px;
@@ -89,12 +90,14 @@
 	background: white;
 	left: 100px;
 	top: 200px;
+	z-index: 100;
 }
 .a #ship { left: 550px; }
 .b #ship { top: 500px; }
 #pillars div {
 	/*transform-origin: 400px 400px;*/
 	background: black;
+	z-index: 10;
 }
 #pillars div.a0 { left: 100px; width: 200px; top: 0px; height: 800px; }
 #pillars div.a1 { left: 500px; width: 200px; top: 0px; height: 800px; }

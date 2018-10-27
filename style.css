@@ -67,7 +67,10 @@
 	position: relative;
 	display: inline-block;
 }
-#tunnel:after {
+#tunnel:before {
+	position: absolute;
+	left: 0;
+	top: 0;
 	content: ' ';
 	width: 800px;
 	height: 800px;

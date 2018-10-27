@@ -44,3 +44,13 @@
 .b #car-b-car { left: 125px; }
 
 #obstacles { display: none; }
+#obstacles div {
+	background: blue;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+}
+#obstacles div.a0 { left: 25px; }
+#obstacles div.a1 { left: 125px; }
+#obstacles div.b0 { left: 225px; }
+#obstacles div.b1 { left: 325px; }

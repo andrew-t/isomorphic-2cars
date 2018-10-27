@@ -32,6 +32,8 @@ function frame() {
 	lastFrame = now;
 	time += delay;
 	
+	document.getElementById('score').innerHTML = score;
+
 	const bigFrame = Math.floor(time / slowness);
 	const subFrame = (time % slowness) / slowness;
 	if (lastBigFrame != bigFrame && bigFrame >= start) {

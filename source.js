@@ -67,8 +67,8 @@ function frame() {
 		requestAnimationFrame(frame);
 }
 
-addObstacle(car, pos) {
-	obstacles.push({ car, pos, startTime: 0 })
+function addObstacle(car, pos) {
+	obstacles.push({ car, pos, startTime: 0 });
 }
 
 });

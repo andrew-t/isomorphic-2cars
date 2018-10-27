@@ -4,5 +4,5 @@ const road = $('road');
 
 $('keylogger').focus();
 $('keylogger').addEventListener('keydown', e => {
-	console.log(e.key);
+	console.log('key', e);
 });

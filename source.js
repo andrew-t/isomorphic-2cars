@@ -36,6 +36,7 @@ function frame() {
 	const subFrame = (time % slowness) / slowness;
 	if (lastBigFrame != bigFrame && bigFrame <= start) {
 		lastBigFrame = bigFrame;
+		console.log('big frame', bigFrame);
 		const happening = ~~(Math.random() * 5);
 		switch(happening) {
 			case 0:
@@ -82,6 +83,7 @@ function frame() {
 }
 
 function addObstacle(car, pos) {
+	console.log('rock', car, pos);
 	obstacles.push({ car, pos, startTime: 0 });
 }
 

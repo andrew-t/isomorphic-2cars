@@ -66,6 +66,11 @@
 	height: 800px;
 	position: relative;
 	display: inline-block;
+}
+#tunnel:after {
+	content: ' ';
+	width: 800px;
+	height: 800px;
 	box-sizing: border-box;
 	border: 400px solid brown;
 	border-top-color: #400;
@@ -73,7 +78,6 @@
 	border-bottom-color: #800;
 	border-right-color: #a00;
 }
-#tunnel > * { position: relative; left: -400px; right: -400px; }
 
 #ship {
 	position: absolute;

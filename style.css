@@ -8,6 +8,7 @@
 
 .lanepair {
 	width: 200px;
+	height: 500px;
 	margin: 0;
 	padding: 0;
 	position: relative;
@@ -16,6 +17,7 @@
 .lane {
 	box-sizing: border-box;
 	width: 100px;
+	height: 500px;
 	margin: 0;
 	padding: 0;
 	border-right: 1px solid white;

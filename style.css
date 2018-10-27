@@ -68,3 +68,14 @@
 	position: relative;
 	display: inline-block;
 }
+
+#ship {
+	position: absolute;
+	width: 150px;
+	height: 100px;
+	background: white;
+	left: 100px;
+	top: 200px;
+}
+.a #ship { left: 550px; }
+.b #ship { top: 600px; }

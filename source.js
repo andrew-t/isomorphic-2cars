@@ -4,6 +4,6 @@ const road = $('road');
 
 road.focus();
 
-window.addEventListener('keydown', e => {
+road.addEventListener('keydown', e => {
 	console.log(e.key);
 });

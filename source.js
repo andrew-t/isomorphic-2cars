@@ -20,7 +20,7 @@ function toggle(c) { document.body.classList.toggle(c); }
 
 const obstacles = [],
 	slowness = 1000,
-	framesInView = 8,
+	framesInView = 4,
 	start = 3;
 let time = 0, score = 0;
 

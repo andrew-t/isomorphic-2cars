@@ -49,8 +49,8 @@ function frame() {
 	}
 	
 	for (let i = obstacles.length; i >= 0; --i) {
-		const ob = obstacles[i];
-		const t = now - ob.startTime;
+		const ob = obstacles[i],
+			t = now - ob.startTime;
 		if (t > framesInView * slowness) {
 			obstacles.splice(i, 1);
 			break;

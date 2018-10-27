@@ -80,6 +80,7 @@ function frame() {
 		const el = document.getElementById('obstacle-' + (i + 1));
 		// console.log(el);
 		el.classList.remove('hidden');
+		el.classList.add(ob.car + ob.pos);
 		el.style.top = (t / (framesInView * slowness) * 800) + 'px';
 	}
 

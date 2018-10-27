@@ -43,7 +43,7 @@
 .a #car-a-car { left: 125px; }
 .b #car-b-car { left: 125px; }
 
-#obstacles { display: none; }
+#obstacles {  }
 #obstacles div {
 	background: blue;
 	width: 50px;

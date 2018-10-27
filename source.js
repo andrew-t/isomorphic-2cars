@@ -21,8 +21,8 @@ function toggle(c) { document.body.classList.toggle(c); }
 const obstacles = [],
 	slowness = 1000,
 	framesInView = 8,
-	start = 3,
-	time = 0;
+	start = 3;
+let time = 0;
 
 let lastFrame = Date.now(), lastBigFrame = 0, gameOver = false;
 requestAnimationFrame(frame);

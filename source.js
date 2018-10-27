@@ -73,16 +73,28 @@ function frame() {
 		.forEach(o => {
 			o.setAttribute('class', 'hidden');
 		});
+	[ ...document.querySelectorAll('#pillars div') ]
+		.forEach(o => {
+			o.setAttribute('class', 'hidden');
+		});
 
 	// console.log(obstacles.length)
 	for (let i = obstacles.length - 1; i >= 0; --i) {
 		const ob = obstacles[i],
 			t = now - ob.startTime;
+
 		const el = document.getElementById('obstacle-' + (i + 1));
 		// console.log(el);
 		el.classList.remove('hidden');
 		el.classList.add(ob.car + ob.pos);
 		el.style.top = (t / (framesInView * slowness) * 800) + 'px';
+
+		const pil = document.getElementById('pillar-' + (i + 1));
+		// console.log(el);
+		el.classList.remove('hidden');
+		el.classList.add(ob.car + ob.pos);
+		el.style.transform = 'scale(' +
+			(t / (framesInView * slowness)) + ')';
 	}
 
 	if (!gameOver)

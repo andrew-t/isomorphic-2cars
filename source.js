@@ -71,12 +71,12 @@ function frame() {
 			o.classList.add('hidden');
 		});
 
-	console.log(obstacles.length)
+	// console.log(obstacles.length)
 	for (let i = obstacles.length - 1; i >= 0; --i) {
 		const ob = obstacles[i],
 			t = now - ob.startTime;
 		const el = document.getElementById('obstacle-' + (i + 1));
-		console.log(el);
+		// console.log(el);
 		el.classList.remove('hidden');
 		el.style.top = (t / (framesInView / slowness) * 800) + 'px';
 	}

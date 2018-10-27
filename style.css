@@ -11,8 +11,11 @@
 	height: 500px;
 	margin: 0;
 	padding: 0;
-	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
+.lanepair + .lanepair { left: 200px; }
 
 .lane {
 	box-sizing: border-box;
@@ -25,7 +28,6 @@
 	top: 0;
 	left: 0;
 }
-.lane + .lane { left: 100px; top: 0; }
 
 .car {
 	background: red;

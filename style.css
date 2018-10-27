@@ -84,3 +84,10 @@
 }
 .a #ship { left: 550px; }
 .b #ship { top: 500px; }
+#pillars div {
+	transform-origin: 400px 400px;
+}
+#pillars div.a0 { left: 100px; width: 200px; top: 0px; height: 800px; }
+#pillars div.a1 { left: 500px; width: 200px; top: 0px; height: 800px; }
+#pillars div.b0 { top: 100px; height: 200px; left: 0px; width: 800px; }
+#pillars div.b1 { top: 500px; height: 200px; left: 0px; width: 800px; }

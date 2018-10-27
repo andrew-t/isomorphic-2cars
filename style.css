@@ -1,19 +1,32 @@
 #road {
-background: #555;
-height: 500px;
-width: 400px;
+	background: #555;
+	height: 500px;
+	width: 400px;
+	margin: 0;
+	padding: 0;
 }
 
 .lanepair {
 	width: 200px;
+	margin: 0;
+	padding: 0;
+	position: relative;
 }
 
 .lane {
 	box-sizing: border-box;
 	width: 100px;
+	margin: 0;
+	padding: 0;
 	border-right: 1px solid white;
 }
 
 .car {
 	background: red;
+	box-sizing: border-box;
+	position: absolute;
+	width: 50px;
+	height: 90px;
+	bottom: 20px;
+	left: 25px;
 }

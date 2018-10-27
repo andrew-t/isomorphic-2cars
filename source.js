@@ -91,9 +91,9 @@ function frame() {
 
 		const pil = document.getElementById('pillar-' + (i + 1));
 		// console.log(el);
-		el.classList.remove('hidden');
-		el.classList.add(ob.car + ob.pos);
-		el.style.transform = 'scale(' +
+		pil.classList.remove('hidden');
+		pil.classList.add(ob.car + ob.pos);
+		pil.style.transform = 'scale(' +
 			(t / (framesInView * slowness) * 1.2) + ')';
 	}
 

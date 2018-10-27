@@ -25,7 +25,7 @@
 	top: 0;
 	left: 0;
 }
-.lane + .lane { left: 100px; }
+.lane + .lane { left: 100px; top: 0; }
 
 .car {
 	background: red;

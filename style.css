@@ -28,6 +28,7 @@
 	top: 0;
 	left: 0;
 }
+.lane + .lane { left: 100px; }
 
 .car {
 	background: red;

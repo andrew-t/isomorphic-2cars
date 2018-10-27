@@ -1,6 +1,9 @@
+
+console.log('ok');
+
 document.addEventListener('DOMContentLoaded', e => {
 
-function aaa(a) { return document.getElementById(a); }
+console.log('ok');
 
 const road = document.getElementById('road'),
 	keyLogger = document.getElementById('keylogger');

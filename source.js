@@ -19,17 +19,22 @@ road.addEventListener('keypress', e => {
 function toggle(c) { document.body.classList.toggle(c); }
 
 const obstacles = [],
-	slowness = 1000;
+	slowness = 1000,
+	framesInView = 8,
+	start = 3,
+	time = 0;
 
-let lastFrame = Date.now(), lastBigFrame = 0;
+let lastFrame = Date.now(), lastBigFrame = 0, gameOver = false;
 requestAnimationFrame(frame);
 function frame() {
-	let delay = Math.min(Date.now() - lastFrame, 100);
-	lastFrame = Date.now();
+	const now = Date.now();
+	let delay = Math.min(now - lastFrame, 100);
+	lastFrame = now;
+	time += delay;
 	
-	const bigFrame = Math.floor(delay / slowness);
-	const subFrame = (delay % slowness) / slowness;
-	if (lastBigFrame != bigFrame) {
+	const bigFrame = Math.floor(time / slowness);
+	const subFrame = (time % slowness) / slowness;
+	if (lastBigFrame != bigFrame && bigFrame <= start) {
 		lastBigFrame = bigFrame;
 		const happening = ~~(Math.random() * 5);
 		switch(happening) {
@@ -43,8 +48,26 @@ function frame() {
 		}
 	}
 	
+	for (let i = obstacles.length; i >= 0; --i) {
+		const ob = obstacles[i];
+		const t = now = ob.startTime;
+		if (t > framesInView * slowness) {
+			obstacles.splice(i, 1);
+			break;
+		}
+		if (t * slowness == framesInView) {
+			if (document.body.classList.contains(ob.car) == (ob.pos == 1)) {
+				gameOver = true;
+				document.body.classList.add('game-over');
+			}
+		}
+	}
 
 	requestAnimationFrame(frame);
+}
+
+addObstacle(car, pos) {
+	obstacles.push({ car, pos, startTime: 0 })
 }
 
 });

@@ -52,6 +52,7 @@ function frame() {
 	for (let i = obstacles.length - 1; i >= 0; --i) {
 		const ob = obstacles[i],
 			t = now - ob.startTime;
+		console.log(t, now, ob.startTime)
 		if (t > framesInView * slowness) {
 			console.log('drive past rock');
 			++score;

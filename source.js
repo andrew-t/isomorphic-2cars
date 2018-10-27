@@ -7,15 +7,6 @@ console.log('ok');
 
 const road = document.getElementById('road');
 
-road.focus();
-road.addEventListener('keypress', e => {
-	switch(e.key) {
-		case 'ArrowLeft': toggle('a'); break;
-		case 'ArrowRight': toggle('b'); break;
-		default: console.log(e); break;
-	}
-});
-
 function toggle(c) { document.body.classList.toggle(c); }
 
 const obstacles = [],
@@ -23,6 +14,15 @@ const obstacles = [],
 	framesInView = 4,
 	start = 3;
 let time = 0, score = 0;
+
+road.focus();
+road.addEventListener('keypress', e => {
+	if (!gameOver) switch(e.key) {
+		case 'ArrowLeft': toggle('a'); break;
+		case 'ArrowRight': toggle('b'); break;
+		default: console.log(e); break;
+	}
+});
 
 let lastFrame = Date.now(), lastBigFrame = 0, gameOver = false;
 requestAnimationFrame(frame);

@@ -22,7 +22,7 @@ const obstacles = [],
 	slowness = 1000,
 	framesInView = 8,
 	start = 3;
-let time = 0;
+let time = 0, score = 0;
 
 let lastFrame = Date.now(), lastBigFrame = 0, gameOver = false;
 requestAnimationFrame(frame);
@@ -53,6 +53,8 @@ function frame() {
 		const ob = obstacles[i],
 			t = now - ob.startTime;
 		if (t > framesInView * slowness) {
+			console.log('drive past rock');
+			++score;
 			obstacles.splice(i, 1);
 			break;
 		}

@@ -69,8 +69,7 @@ function frame() {
 
 	[ ...document.querySelectorAll('#obstacles div') ]
 		.forEach(o => {
-			[ ...o.classList ].forEach(c => o.classList.remove('c'));
-			o.classList.add('hidden');
+			o.setAttribute('class', 'hidden');
 		});
 
 	// console.log(obstacles.length)

@@ -82,11 +82,11 @@ function frame() {
 
 	if (!gameOver)
 		requestAnimationFrame(frame);
-}
 
-function addObstacle(car, pos) {
-	console.log('rock', car, pos);
-	obstacles.push({ car, pos, startTime: 0 });
+	function addObstacle(car, pos) {
+		console.log('rock', car, pos);
+		obstacles.push({ car, pos, startTime: 0 });
+	}
 }
 
 });

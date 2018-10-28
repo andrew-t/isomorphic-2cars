@@ -20,6 +20,7 @@ function startGame() {
 	lastHugeFrame = 0;
 	requestAnimationFrame(frame);
 	document.body.classList.remove('game-over');
+	unhide();
 }
 
 function toggle(c) { document.body.classList.toggle(c); }
@@ -94,13 +95,9 @@ function frame() {
 		}
 	}
 
-	const hugeFrame = Math.floor(bigFrame / 10);
-	if (lastHugeFrame != hugeFrame && hugeFrame >= bigStart) {
-		lastHugeFrame = hugeFrame;
-		console.log('huge frame', hugeFrame);
-		const happening = ~~(Math.random() * (hugeFrame >= hugeStart ? 9 : 5));
-				document.getElementById('road').classList.remove('invisible');
-				document.getElementById('tunnel').classList.remove('invisible');
+	function unhide() {
+		document.getElementById('road').classList.remove('invisible');
+		document.getElementById('tunnel').classList.remove('invisible');
 		document.getElementById('block-lane-a0').classList.add('invisible');
 		document.getElementById('block-lane-a1').classList.add('invisible');
 		document.getElementById('block-lane-b0').classList.add('invisible');
@@ -109,6 +106,14 @@ function frame() {
 		document.getElementById('block-tunnel-a1').classList.add('invisible');
 		document.getElementById('block-tunnel-b0').classList.add('invisible');
 		document.getElementById('block-tunnel-b1').classList.add('invisible');
+	}
+
+	const hugeFrame = Math.floor(bigFrame / 10);
+	if (lastHugeFrame != hugeFrame && hugeFrame >= bigStart) {
+		lastHugeFrame = hugeFrame;
+		console.log('huge frame', hugeFrame);
+		const happening = ~~(Math.random() * (hugeFrame >= hugeStart ? 9 : 5));
+		unhide();
 		switch(happening) {
 			case 0:
 				// nothing!

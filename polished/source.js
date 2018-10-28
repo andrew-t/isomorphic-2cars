@@ -16,7 +16,7 @@ const obstacles = [],
 let time = 0, score = 0;
 
 road.focus();
-road.addEventListener('keypress', e => {
+road.addEventListener('keydown', e => {
 	if (!gameOver) switch(e.key) {
 		case 'ArrowLeft': toggle('a'); break;
 		case 'ArrowRight': toggle('b'); break;

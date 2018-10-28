@@ -12,7 +12,7 @@ function toggle(c) { document.body.classList.toggle(c); }
 const obstacles = [],
 	slowness = 1000,
 	framesInView = 4,
-	start = 3;
+	start = 3, bigStart = 3;
 let time = 0, score = 0;
 
 road.focus();
@@ -24,7 +24,16 @@ road.addEventListener('keypress', e => {
 	}
 });
 
-let lastFrame = Date.now(), lastBigFrame = 0, gameOver = false;
+function wrs() {
+	const cont = document.getElementById('container');
+	const xs = window.innerWidth / cont.clientWidth,
+		ys = window.innerHeight / cont.clientHeight;
+	cont.style.transform = `scale(${Math.min(xs, ys)})`;
+}
+window.addEventListener('resize', wrs);
+wrs();
+
+let lastFrame = Date.now(), lastBigFrame = 0, lastHugeFrame = 0, gameOver = false;
 requestAnimationFrame(frame);
 function frame() {
 	const now = Date.now();
@@ -50,11 +59,32 @@ function frame() {
 			case 4: addObstacle('b', 1); break;
 		}
 	}
+
+	const hugeFrame = Math.floor(bigFrame / 10);
+	if (lastHugeFrame != hugeFrame && hugeFrame >= start) {
+		lastHugeFrame = hugeFrame;
+		console.log('huge frame', hugeFrame);
+		const happening = ~~(Math.random() * 5);
+		switch(happening) {
+			case 0: case 1: case 2:
+				document.getElementById('road').classList.remove('invisible');
+				document.getElementById('tunnel').classList.remove('invisible');
+				break;
+			case 3:
+				document.getElementById('road').classList.remove('invisible');
+				document.getElementById('tunnel').classList.add('invisible');
+				break;
+			case 4:
+				document.getElementById('road').classList.add('invisible');
+				document.getElementById('tunnel').classList.remove('invisible');
+				 break;
+		}
+	}
 	
 	for (let i = obstacles.length - 1; i >= 0; --i) {
 		const ob = obstacles[i],
 			t = now - ob.startTime;
-		if (t > framesInView * slowness) {
+		if (t > framesInView * slowness * 1.2) {
 			console.log('drive past rock');
 			++score;
 			obstacles.splice(i, 1);
@@ -92,9 +122,12 @@ function frame() {
 		const pil = document.getElementById('pillar-' + (i + 1));
 		// console.log(el);
 		pil.classList.remove('hidden');
+		if (t / slowness > framesInView - 0.75 && t / slowness < framesInView - 0.25)
+			pil.classList.add('danger');
 		pil.classList.add(ob.car + ob.pos);
 		pil.style.transform = 'scale(' +
-			(t / (framesInView * slowness) * 1.2) + ')';
+			Math.pow(2.71, t * 5 / (framesInView * slowness) - 1) / 20 + ')';
+		pil.style.zIndex = t * 50 / (framesInView * slowness) + 25;
 	}
 
 	if (!gameOver)

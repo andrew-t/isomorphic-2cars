@@ -158,6 +158,7 @@ function frame() {
 		if (t / slowness > framesInView - 0.75 && t / slowness < framesInView - 0.25) {
 			if (document.body.classList.contains(ob.car) == (ob.pos == 1)) {
 				gameOver = true;
+				unhide();
 				console.log('gameOver');
 				document.body.classList.add('game-over');
 			}

@@ -29,6 +29,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
+	overflow: hidden;
 }
 .lane + .lane { left: 100px; }
 
@@ -42,12 +43,17 @@
 	bottom: 20px;
 	left: 25px;
 	transition: all 300ms;
+	transform: 0;
 }
 
-.a #car-a-car { left: 125px; }
-.b #car-b-car { left: 125px; }
+.a #car-a-car,
+.b #car-b-car { transform: translate(100px, 0); }
 
-#obstacles {  }
+#obstacles {
+	height: 800px;
+	width: 400px;
+	overflow: hidden;
+}
 #obstacles div {
 	background: url('rock.png');
 	background-size: contain;
@@ -90,17 +96,19 @@
 
 #ship {
 	position: absolute;
-	width: 150px;
-	height: 100px;
+	width: 300px;
+	height: 200px;
 	background: url('ship.png');
 	background-size: contain;
-	left: 100px;
-	top: 200px;
+	left: 50px;
+	top: 100px;
 	z-index: 100;
 	transition: all 300ms;
+	transform: translate(0, 0);
 }
-.a #ship { left: 550px; }
-.b #ship { top: 500px; }
+.a #ship { transform: translate(400px, 0); }
+.b #ship { transform: translate(0, 400px); }
+.a.b #ship { transform: translate(400px, 400px); }
 #pillars div {
 	background: black;
 	position: absolute;
@@ -141,7 +149,29 @@
 body {
 	padding: 0;
 	margin: 0;
+	overflow: hidden;
+	width: 100vw;
+	height: 100vh;
 }
 
 .invisible { opacity: 0; }
-#road, #tunnel { transition: opacity 1500ms; }
+#road, #tunnel, .lane-block, .tunnel-block { transition: opacity 1500ms; }
+
+
+
+.lane-block, .tunnel-block {
+	position: absolute;
+	background: white;
+	z-index: 200;
+	left: 0; top: 0;
+	height: 800px; width: 800px;
+}
+.lane-block { width: 100px; }
+#block-lane-a1 { left: 100px; }
+#block-lane-b0 { left: 200px; }
+#block-lane-b1 { left: 300px; }
+#block-tunnel-a0 { width: 400px; }
+#block-tunnel-a1 { width: 400px; left: 400px; }
+#block-tunnel-b0 { height: 400px; }
+#block-tunnel-b1 { height: 400px; top: 400px; }
+

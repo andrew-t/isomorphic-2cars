@@ -12,10 +12,11 @@ function toggle(c) { document.body.classList.toggle(c); }
 const obstacles = [],
 	slowness = 1000,
 	framesInView = 4,
-	start = 3, bigStart = 3;
-let time = 0, score = 0;
+	start = 3, bigStart = 3, hugeStart = 10;
+let time = 0, score = 0, speedFactor = 1;
 
 road.focus();
+road.addEventListener('blur', e => road.focus());
 road.addEventListener('keydown', e => {
 	if (!gameOver) switch(e.key) {
 		case 'ArrowLeft': toggle('a'); break;
@@ -23,6 +24,24 @@ road.addEventListener('keydown', e => {
 		default: console.log(e); break;
 	}
 });
+
+window.addEventListener('touch', touch);
+document.body.addEventListener('touch', touch);
+document.body.addEventListener('click', touch);
+let touchDebounceLeft = 0, touchDebounceRight = 0;
+function touch(e) {
+	if (gameOver) return;
+	if (e.clientX < window.innerWidth / 2) {
+		if (touchDebounceLeft > Date.now() - 100) return;
+		touchDebounceLeft = Date.now();
+		toggle('a');
+	} else {
+		if (touchDebounceRight > Date.now() - 100) return;
+		touchDebounceRight = Date.now();
+		toggle('b');
+	}
+	e.preventDefault();
+}
 
 function wrs() {
 	const cont = document.getElementById('container');
@@ -39,7 +58,7 @@ function frame() {
 	const now = Date.now();
 	let delay = Math.min(now - lastFrame, 100);
 	lastFrame = now;
-	time += delay;
+	time += delay * speedFactor;
 	
 	document.getElementById('score').innerHTML = score;
 
@@ -61,29 +80,55 @@ function frame() {
 	}
 
 	const hugeFrame = Math.floor(bigFrame / 10);
-	if (lastHugeFrame != hugeFrame && hugeFrame >= start) {
+	if (lastHugeFrame != hugeFrame && hugeFrame >= bigStart) {
 		lastHugeFrame = hugeFrame;
 		console.log('huge frame', hugeFrame);
-		const happening = ~~(Math.random() * 5);
-		switch(happening) {
-			case 0: case 1: case 2:
+		const happening = ~~(Math.random() * (hugeFrame >= hugeStart ? 9 : 5));
 				document.getElementById('road').classList.remove('invisible');
 				document.getElementById('tunnel').classList.remove('invisible');
+		document.getElementById('block-lane-a0').classList.add('invisible');
+		document.getElementById('block-lane-a1').classList.add('invisible');
+		document.getElementById('block-lane-b0').classList.add('invisible');
+		document.getElementById('block-lane-b1').classList.add('invisible');
+		document.getElementById('block-tunnel-a0').classList.add('invisible');
+		document.getElementById('block-tunnel-a1').classList.add('invisible');
+		document.getElementById('block-tunnel-b0').classList.add('invisible');
+		document.getElementById('block-tunnel-b1').classList.add('invisible');
+		switch(happening) {
+			case 0:
+				// nothing!
+				break;
+			case 1: case 2:
+				if (speedFactor < 3) speedFactor += 0.25;
 				break;
 			case 3:
-				document.getElementById('road').classList.remove('invisible');
 				document.getElementById('tunnel').classList.add('invisible');
 				break;
 			case 4:
 				document.getElementById('road').classList.add('invisible');
-				document.getElementById('tunnel').classList.remove('invisible');
-				 break;
+				break;
+			case 5:
+				document.getElementById('block-lane-a0').classList.remove('invisible');
+				document.getElementById('block-tunnel-a1').classList.remove('invisible');
+				break;
+			case 6:
+				document.getElementById('block-lane-a1').classList.remove('invisible');
+				document.getElementById('block-tunnel-a0').classList.remove('invisible');
+				break;
+			case 7:
+				document.getElementById('block-lane-b0').classList.remove('invisible');
+				document.getElementById('block-tunnel-b1').classList.remove('invisible');
+				break;
+			case 8:
+				document.getElementById('block-lane-b0').classList.remove('invisible');
+				document.getElementById('block-tunnel-b1').classList.remove('invisible');
+				break;
 		}
 	}
 	
 	for (let i = obstacles.length - 1; i >= 0; --i) {
 		const ob = obstacles[i],
-			t = now - ob.startTime;
+			t = time - ob.startTime;
 		if (t > framesInView * slowness * 1.2) {
 			console.log('drive past rock');
 			++score;
@@ -111,13 +156,14 @@ function frame() {
 	// console.log(obstacles.length)
 	for (let i = obstacles.length - 1; i >= 0; --i) {
 		const ob = obstacles[i],
-			t = now - ob.startTime;
+			t = time - ob.startTime;
 
 		const el = document.getElementById('obstacle-' + (i + 1));
 		// console.log(el);
 		el.classList.remove('hidden');
 		el.classList.add(ob.car + ob.pos);
-		el.style.top = (t / (framesInView * slowness) * 800) + 'px';
+		el.style.transform = 'translate(0, ' +
+			(t / (framesInView * slowness) * 800) + 'px)';
 
 		const pil = document.getElementById('pillar-' + (i + 1));
 		// console.log(el);
@@ -127,15 +173,16 @@ function frame() {
 		pil.classList.add(ob.car + ob.pos);
 		pil.style.transform = 'scale(' +
 			Math.pow(2.71, t * 5 / (framesInView * slowness) - 1) / 20 + ')';
-		pil.style.zIndex = t * 50 / (framesInView * slowness) + 25;
+		pil.style.zIndex = (t / (framesInView * slowness)) * 80 + 20;
 	}
 
+	road.focus();
 	if (!gameOver)
 		requestAnimationFrame(frame);
 
 	function addObstacle(car, pos) {
 		console.log('rock', car, pos);
-		obstacles.push({ car, pos, startTime: now });
+		obstacles.push({ car, pos, startTime: time });
 	}
 }
 

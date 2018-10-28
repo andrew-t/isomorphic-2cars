@@ -6,6 +6,21 @@ document.addEventListener('DOMContentLoaded', e => {
 console.log('ok');
 
 const road = document.getElementById('road');
+let gameOver = true;
+
+function startGame() {
+	obstacles.length = [];
+	speedFactor = 1;
+	time = 0;
+	score = 0;
+	document.body.classList.add('started');
+	road.focus();
+	gameOver = false;
+	lastBigFrame = 0;
+	lastHugeFrame = 0;
+	requestAnimationFrame(frame);
+	document.body.classList.remove('game-over');
+}
 
 function toggle(c) { document.body.classList.toggle(c); }
 
@@ -18,26 +33,26 @@ let time = 0, score = 0, speedFactor = 1;
 road.focus();
 road.addEventListener('blur', e => road.focus());
 road.addEventListener('keydown', e => {
-	if (!gameOver) switch(e.key) {
-		case 'ArrowLeft': toggle('a'); break;
-		case 'ArrowRight': toggle('b'); break;
+	switch(e.key) {
+		case 'ArrowLeft': if (!gameOver) toggle('a'); break;
+		case 'ArrowRight': if (!gameOver) toggle('b'); break;
+		case ' ': if (gameOver) startGame(); break;
 		default: console.log(e); break;
 	}
 });
 
-window.addEventListener('touch', touch);
-document.body.addEventListener('touch', touch);
-document.body.addEventListener('click', touch);
+document.body.addEventListener('touchstart', touch);
+// document.body.addEventListener('click', touch);
 let touchDebounceLeft = 0, touchDebounceRight = 0;
 function touch(e) {
-	if (gameOver) return;
+	if (gameOver) startGame();
 	if (e.clientX < window.innerWidth / 2) {
-		if (touchDebounceLeft > Date.now() - 100) return;
-		touchDebounceLeft = Date.now();
+		// if (touchDebounceLeft > Date.now() - 100) return;
+		// touchDebounceLeft = Date.now();
 		toggle('a');
 	} else {
-		if (touchDebounceRight > Date.now() - 100) return;
-		touchDebounceRight = Date.now();
+		// if (touchDebounceRight > Date.now() - 100) return;
+		// touchDebounceRight = Date.now();
 		toggle('b');
 	}
 	e.preventDefault();
@@ -52,7 +67,7 @@ function wrs() {
 window.addEventListener('resize', wrs);
 wrs();
 
-let lastFrame = Date.now(), lastBigFrame = 0, lastHugeFrame = 0, gameOver = false;
+let lastFrame = Date.now(), lastBigFrame = 0, lastHugeFrame = 0;
 requestAnimationFrame(frame);
 function frame() {
 	const now = Date.now();

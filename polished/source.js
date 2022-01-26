@@ -1,11 +1,5 @@
-
-console.log('ok');
-
 document.addEventListener('DOMContentLoaded', e => {
 
-console.log('ok');
-
-const road = document.getElementById('road');
 let gameOver = true;
 
 function startGame() {
@@ -14,7 +8,6 @@ function startGame() {
 	time = 0;
 	score = 0;
 	document.body.classList.add('started');
-	road.focus();
 	gameOver = false;
 	lastBigFrame = 0;
 	lastHugeFrame = 0;
@@ -31,9 +24,7 @@ const obstacles = [],
 	start = 3, bigStart = 3, hugeStart = 10;
 let time = 0, score = 0, speedFactor = 1;
 
-road.focus();
-road.addEventListener('blur', e => road.focus());
-road.addEventListener('keydown', e => {
+window.addEventListener('keydown', e => {
 	switch(e.key) {
 		case 'ArrowLeft': if (!gameOver) toggle('a'); break;
 		case 'ArrowRight': if (!gameOver) toggle('b'); break;
@@ -197,7 +188,6 @@ function frame() {
 		pil.style.zIndex = (t / (framesInView * slowness)) * 80 + 20;
 	}
 
-	road.focus();
 	if (!gameOver)
 		requestAnimationFrame(frame);
 
